@@ -1,29 +1,29 @@
 import React from "react";
+import "./App.scss";
+import useApplicationData from "./hooks/useApplicationData";
 import HomeRoute from "./routes/HomeRoute";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
-import useApplicationData from "./hooks/useApplicationData";
-import './App.scss';
 
 const App = () => {
   const {
     state,
     updateToFavPhotoIds,
     setPhotoSelected,
-    onClosePhotoDetailsModal
+    onClosePhotoDetailsModal,
   } = useApplicationData();
 
   return (
     <div className="App">
-      <HomeRoute 
+      <HomeRoute
         photos={state.photos}
         topics={state.topics}
         favouritePhotoIds={state.favouritePhotoIds}
         toggleFavourite={updateToFavPhotoIds}
         setSelectedPhoto={setPhotoSelected}
       />
-       
+
       {state.selectedPhoto && (
-        <PhotoDetailsModal 
+        <PhotoDetailsModal
           id={state.selectedPhoto.id}
           imageUrl={state.selectedPhoto.urls.full}
           user={state.selectedPhoto.user}
