@@ -35,6 +35,11 @@ const App = () => {
        
       {selectedPhoto && (
         <PhotoDetailsModal 
+          id={selectedPhoto.id}
+          imageUrl={selectedPhoto.urls.full}
+          user={selectedPhoto.user}
+          location={selectedPhoto.location}
+          similarPhotos={selectedPhoto.similar_photos}
           setSelectedPhoto={setSelectedPhoto}
         />
       )}
