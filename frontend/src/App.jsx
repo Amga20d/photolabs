@@ -1,48 +1,37 @@
-import React, { useState } from "react";
-// import PhotoListItem from './components/PhotoListItem';
-// import PhotoList from './components/PhotoList';
-// import TopicListItem from './components/TopicListItem';
-// import TopicList from './components/TopicList';
-// import TopNavigationBar from './components/TopNavigationBar';
+import React from "react";
 import HomeRoute from "./routes/HomeRoute";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
-import photos from "./mocks/photos";
-import topics from "./mocks/topics";
-
+import useApplicationData from "./hooks/useApplicationData";
 import './App.scss';
 
 const App = () => {
-  const [favouritePhotoIds, setFavouritePhotoIds] = useState([]);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-
-  const toggleFavourite = (photoId) => {
-    setFavouritePhotoIds((prev) =>
-      prev.includes(photoId)
-        ? prev.filter((id) => id !== photoId)
-        : [...prev, photoId]
-    );
-  };
+  const {
+    state,
+    updateToFavPhotoIds,
+    setPhotoSelected,
+    onClosePhotoDetailsModal
+  } = useApplicationData();
 
   return (
     <div className="App">
       <HomeRoute 
-       photos={photos} 
-       topics={topics}
-       favouritePhotoIds={favouritePhotoIds}
-       toggleFavourite={toggleFavourite}
-       setSelectedPhoto={setSelectedPhoto}
+        photos={state.photos}
+        topics={state.topics}
+        favouritePhotoIds={state.favouritePhotoIds}
+        toggleFavourite={updateToFavPhotoIds}
+        setSelectedPhoto={setPhotoSelected}
       />
        
-      {selectedPhoto && (
+      {state.selectedPhoto && (
         <PhotoDetailsModal 
-          id={selectedPhoto.id}
-          imageUrl={selectedPhoto.urls.full}
-          user={selectedPhoto.user}
-          location={selectedPhoto.location}
-          similarPhotos={photos}
-          setSelectedPhoto={setSelectedPhoto}
-          favouritePhotoIds={favouritePhotoIds}
-          toggleFavourite={toggleFavourite}
+          id={state.selectedPhoto.id}
+          imageUrl={state.selectedPhoto.urls.full}
+          user={state.selectedPhoto.user}
+          location={state.selectedPhoto.location}
+          similarPhotos={state.photos}
+          setSelectedPhoto={onClosePhotoDetailsModal}
+          favouritePhotoIds={state.favouritePhotoIds}
+          toggleFavourite={updateToFavPhotoIds}
         />
       )}
     </div>
