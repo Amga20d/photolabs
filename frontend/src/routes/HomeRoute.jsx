@@ -1,18 +1,23 @@
 import React from "react";
-import "../styles/HomeRoute.scss";
 import TopNavigation from "../components/TopNavigationBar";
 import PhotoList from "../components/PhotoList";
+import "../styles/HomeRoute.scss";
 
 const HomeRoute = ({
   photos,
   topics,
   favouritePhotoIds,
   toggleFavourite,
-  setSelectedPhoto
+  setSelectedPhoto,
+  fetchPhotosByTopic,
 }) => {
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} favouritePhotoIds={favouritePhotoIds} />
+      <TopNavigation
+        topics={topics}
+        favouritePhotoIds={favouritePhotoIds}
+        fetchPhotosByTopic={fetchPhotosByTopic}
+      />
       <PhotoList
         photos={photos}
         favouritePhotoIds={favouritePhotoIds}
@@ -22,6 +27,5 @@ const HomeRoute = ({
     </div>
   );
 };
-
 
 export default HomeRoute;
