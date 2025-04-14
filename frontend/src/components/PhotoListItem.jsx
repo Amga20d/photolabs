@@ -2,18 +2,28 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ id, imageSource, username, location, profile }) => {
+const PhotoListItem = ({
+  id,
+  imageSource,
+  username,
+  location,
+  profile,
+  isLiked,
+  toggleFavourite,
+}) => {
   return (
-    <div className="photo-list__item" key={id}>
+    <div className="photo-list__item">
       <div style={{ position: "relative" }}>
         <img
           className="photo-list__image"
           src={imageSource}
           alt={`Photo by ${username}`}
         />
-        {/* Favourite Button overlaid on the image */}
         <div style={{ position: "absolute", top: 8, right: 8 }}>
-          <PhotoFavButton />
+          <PhotoFavButton
+            selected={isLiked}
+            onClick={() => toggleFavourite(id)}
+          />
         </div>
       </div>
 
