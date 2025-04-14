@@ -30,7 +30,7 @@ const App = () => {
           imageUrl={state.selectedPhoto.urls.full}
           user={state.selectedPhoto.user}
           location={state.selectedPhoto.location}
-          similarPhotos={state.photos}
+          similarPhotos={state.selectedPhoto.similar_photos}
           setSelectedPhoto={onClosePhotoDetailsModal}
           favouritePhotoIds={state.favouritePhotoIds}
           toggleFavourite={updateToFavPhotoIds}
