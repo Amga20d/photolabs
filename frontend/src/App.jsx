@@ -19,16 +19,24 @@ const sampleDataForPhotoListItem = {
   },
 };
 
+const repeatedData = [1, 2, 3].map((num) => ({
+  ...sampleDataForPhotoListItem,
+  id: num,
+}));
+
 const App = () => {
   return (
     <div className="App">
-      <PhotoListItem
-        id={sampleDataForPhotoListItem.id}
-        imageSource={sampleDataForPhotoListItem.urls.regular}
-        username={sampleDataForPhotoListItem.user.username}
-        location={`${sampleDataForPhotoListItem.location.city}, ${sampleDataForPhotoListItem.location.country}`}
-        profile={sampleDataForPhotoListItem.user.profile}
-      />
+      {repeatedData.map((photo) => (
+        <PhotoListItem
+          key={photo.id}
+          id={photo.id}
+          imageSource={photo.urls.regular}
+          username={photo.user.username}
+          location={`${photo.location.city}, ${photo.location.country}`}
+          profile={photo.user.profile}
+        />
+      ))}
     </div>
   );
 };
