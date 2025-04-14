@@ -14,7 +14,10 @@ PhotoLabs is a React-based single-page application (SPA) that allows users to br
 - **Responsive Design:** Enjoy a seamless experience across devices.
 
 # Screenshots
-Include relevant screenshots here to showcase the application's interface and features.
+![Main Page](Main.PNG)
+
+![Modal View](Modal.PNG)
+
 
 # Getting Started
 ## Prerequisites
