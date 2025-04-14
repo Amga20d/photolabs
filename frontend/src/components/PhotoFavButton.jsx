@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
 const PhotoFavButton = () => {
-  const handleClick = (event) => {
-    const heartIcon = event.currentTarget.querySelector("i");
-    heartIcon.classList.toggle("photo-list__fav-icon-svg"); // toggles active style
+  const [selected, setSelected] = useState(false);
+
+  const handleClick = () => {
+    setSelected(!selected);
     console.log("Favourite toggled!");
   };
 
   return (
     <div className="photo-list__fav-icon" onClick={handleClick}>
-      <i className="photo-list__fav-icon-svg" />
+      <FavIcon selected={selected} />
     </div>
   );
 };
