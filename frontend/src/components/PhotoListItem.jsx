@@ -10,20 +10,28 @@ const PhotoListItem = ({
   profile,
   isLiked,
   toggleFavourite,
+  setSelectedPhoto,
+  photoData, // pass the full photo object
 }) => {
   return (
     <div className="photo-list__item">
-      <div style={{ position: "relative" }}>
+      <div
+        style={{ position: "relative" }}
+        onClick={() => setSelectedPhoto(photoData)} // 🔸 Click to open modal
+      >
         <img
           className="photo-list__image"
           src={imageSource}
           alt={`Photo by ${username}`}
         />
-        <div style={{ position: "absolute", top: 8, right: 8 }}>
-          <PhotoFavButton
-            selected={isLiked}
-            onClick={() => toggleFavourite(id)}
-          />
+        <div
+          style={{ position: "absolute", top: 8, right: 8 }}
+          onClick={(e) => {
+            e.stopPropagation(); // prevent triggering the modal
+            toggleFavourite(id);
+          }}
+        >
+          <PhotoFavButton selected={isLiked} />
         </div>
       </div>
 

@@ -4,7 +4,8 @@ import React, { useState } from "react";
 // import TopicListItem from './components/TopicListItem';
 // import TopicList from './components/TopicList';
 // import TopNavigationBar from './components/TopNavigationBar';
-import HomeRoute from "./components/HomeRoute";
+import HomeRoute from "./routes/HomeRoute";
+import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 import photos from "./mocks/photos";
 import topics from "./mocks/topics";
 
@@ -12,6 +13,7 @@ import './App.scss';
 
 const App = () => {
   const [favouritePhotoIds, setFavouritePhotoIds] = useState([]);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
   const toggleFavourite = (photoId) => {
     setFavouritePhotoIds((prev) =>
@@ -23,12 +25,17 @@ const App = () => {
 
   return (
     <div className="App">
-       <HomeRoute 
+      <HomeRoute 
        photos={photos} 
        topics={topics}
        favouritePhotoIds={favouritePhotoIds}
        toggleFavourite={toggleFavourite}
-       />
+       setSelectedPhoto={setSelectedPhoto}
+      />
+       
+      {selectedPhoto && (
+        <PhotoDetailsModal />
+      )}
     </div>
   );
 };
