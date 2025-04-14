@@ -1,12 +1,13 @@
 import React from 'react';
 // import PhotoListItem from './components/PhotoListItem';
-import PhotoList from './components/PhotoList';
+// import PhotoList from './components/PhotoList';
+import TopicListItem from './components/TopicListItem';
 import './App.scss';
 
 const App = () => {
   return (
     <div className="App">
-      <PhotoList/>
+      <TopicListItem/>
     </div>
   );
 };
