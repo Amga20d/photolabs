@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.scss";
-import useApplicationData from "./hooks/useApplicationData";
 import HomeRoute from "./routes/HomeRoute";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
+import useApplicationData from "./hooks/useApplicationData";
 
 const App = () => {
   const {

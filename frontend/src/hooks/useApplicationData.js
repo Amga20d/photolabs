@@ -1,6 +1,4 @@
-import { useReducer } from "react";
-import photos from "../mocks/photos";
-import topics from "../mocks/topics";
+import { useReducer, useEffect } from "react";
 
 export const ACTIONS = {
   TOGGLE_FAV: "TOGGLE_FAV",
@@ -11,8 +9,8 @@ export const ACTIONS = {
 };
 
 const initialState = {
-  photos,
-  topics,
+  photos: [],
+  topics: [],
   favouritePhotoIds: [],
   selectedPhoto: null,
 };
@@ -42,10 +40,33 @@ const reducer = (state, { type, payload }) => {
 export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // Fetch photos once on load
+  useEffect(() => {
+    fetch("http://localhost:8001/api/photos")
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: ACTIONS.SET_PHOTOS, payload: { photos: data } });
+      })
+      .catch((error) => console.error("Error fetching photos:", error));
+  }, []);
+
+  // Fetch topics once on load
+  useEffect(() => {
+    fetch("http://localhost:8001/api/topics")
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: ACTIONS.SET_TOPICS, payload: { topics: data } });
+      })
+      .catch((error) => console.error("Error fetching topics:", error));
+  }, []);
+
   return {
     state,
-    updateToFavPhotoIds: (id) => dispatch({ type: ACTIONS.TOGGLE_FAV, payload: { id } }),
-    setPhotoSelected: (photo) => dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photo } }),
-    onClosePhotoDetailsModal: () => dispatch({ type: ACTIONS.CLOSE_MODAL }),
+    updateToFavPhotoIds: (id) =>
+      dispatch({ type: ACTIONS.TOGGLE_FAV, payload: { id } }),
+    setPhotoSelected: (photo) =>
+      dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photo } }),
+    onClosePhotoDetailsModal: () =>
+      dispatch({ type: ACTIONS.CLOSE_MODAL }),
   };
 }

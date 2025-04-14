@@ -73,6 +73,9 @@ const PhotoDetailsModal = ({
 
       {/* Similar Photos */}
       <div className="photo-details-modal__images">
+        <div style={{ fontSize: "14px", fontWeight: "500", marginBottom: "8px" }}>
+          Similar Photos
+        </div>
         <PhotoList
           photos={similarPhotos}
           favouritePhotoIds={favouritePhotoIds}
