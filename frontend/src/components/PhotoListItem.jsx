@@ -18,7 +18,29 @@ const sampleDataForPhotoListItem = {
 };
 
 const PhotoListItem = () => {
-  /* Insert React */
+  const {
+    id,
+    location,
+    urls,
+    user
+  } = sampleDataForPhotoListItem;
+
+  const locationString = `${location.city}, ${location.country}`;
+
+  return (
+    <div className="photo-list-item" key={id}>
+      <img className="photo-image" src={urls.regular} alt={`Photo by ${user.name}`} />
+      <div className="photo-details">
+        <div className="user-info">
+          <img className="user-profile" src={user.profile} alt={`${user.name}'s profile`} />
+          <span className="username">@{user.username}</span>
+        </div>
+        <div className="location">
+          {locationString}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default PhotoListItem;
