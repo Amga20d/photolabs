@@ -34,7 +34,9 @@ const App = () => {
       />
        
       {selectedPhoto && (
-        <PhotoDetailsModal />
+        <PhotoDetailsModal 
+          setSelectedPhoto={setSelectedPhoto}
+        />
       )}
     </div>
   );
