@@ -39,8 +39,10 @@ const App = () => {
           imageUrl={selectedPhoto.urls.full}
           user={selectedPhoto.user}
           location={selectedPhoto.location}
-          similarPhotos={selectedPhoto.similar_photos}
+          similarPhotos={photos}
           setSelectedPhoto={setSelectedPhoto}
+          favouritePhotoIds={favouritePhotoIds}
+          toggleFavourite={toggleFavourite}
         />
       )}
     </div>
